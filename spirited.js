@@ -11,11 +11,8 @@ function setup(){
 
   cnv.mouseClicked(togglePlay);
 
-  sound.amp(0.2);
-
   amplitude = new p5.Amplitude();
   fft = new p5.FFT();
-
 
 }
 

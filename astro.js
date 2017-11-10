@@ -9,8 +9,6 @@ function setup(){
   var cnv = createCanvas(800, 600);
   cnv.mouseClicked(togglePlay);
 
-  sound.amp(0.2);
-
   amplitude = new p5.Amplitude();
   fft = new p5.FFT();
 
