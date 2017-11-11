@@ -26,13 +26,31 @@ function draw(){
   var level = amplitude.getLevel();
   var waveform = fft.waveform();
   background(200);
-  drawCubeGrid();
-}
+  drawCubeGrid(INTERVAL / 2);
 
-function drawCubeGrid(){
+}
+/*
+function drawConcentricCubeSquares(){
+  var x = frameCount * 0.2;
+  drawRotatingCube(x);
+  for (var k = 1; k < nCircles; k++){
+    var sideLength = (2 * k + 1);
+    var startLoc = -(sideLength - 1) / 2;
+    translate(startLoc, 0, 0);
+    drawRotatingCube(x);
+    for (var j = 1; j < sideLength; j++){
+      translate(INTERVAL * j, 0, 0); 
+      drawRotatingCube(x);
+
+    }
+  }
+}
+*/
+
+function drawCubeGrid(offset){
   translate(-width / 2, -height / 2 + INTERVAL / 4, 0);
   for (var i = 0; i < nRows; i++){
-    var startLoc = INTERVAL / 2 * (i % 2);
+    var startLoc = offset * (i % 2);
     translate(startLoc, 0, 0);
     for (var j = 0; j < nCols; j++){
       //var x = Math.abs(nCols / 2 - j ) + Math.abs(nRows / 2 - i) + frameCount*0.2;
