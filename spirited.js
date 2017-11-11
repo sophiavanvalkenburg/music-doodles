@@ -3,10 +3,12 @@ function preload(){
   sound = loadSound('untitled-spirited-version.mp3');
 }
 
+var lastTime = 0;
+var deltaTime = 0;
 var BOX_DIM = 30;
 var GRID_DENSITY = 3;
 var INTERVAL = BOX_DIM * GRID_DENSITY;
-var Z_SPEED = 100;
+var Z_SPEED = 5;
 var nCols, nRows;
 function setup(){
 
@@ -22,12 +24,18 @@ function setup(){
 }
 
 function draw(){
-
+  getDeltaTime();
   var level = amplitude.getLevel();
   var waveform = fft.waveform();
   background(200);
   drawCubeGrid(INTERVAL / 2);
 
+}
+
+function getDeltaTime(){
+  var time = millis();
+  deltaTime = time - lastTime;
+  lastTime = time; 
 }
 /*
 function drawConcentricCubeSquares(){
@@ -55,9 +63,9 @@ function drawCubeGrid(offset){
     for (var j = 0; j < nCols; j++){
       //var x = Math.abs(nCols / 2 - j ) + Math.abs(nRows / 2 - i) + frameCount*0.2;
       var x = j + i + frameCount * 0.2;
-      translate(INTERVAL * j, 0, -Z_SPEED * sin(x));
+      translate(INTERVAL * j, 0, -Z_SPEED * deltaTime * sin(x));
       drawRotatingCube(x);
-      translate(-INTERVAL * j, 0, Z_SPEED * sin(x));
+      translate(-INTERVAL * j, 0, Z_SPEED * deltaTime * sin(x));
     }
     translate(-startLoc, INTERVAL, 0); 
   }
