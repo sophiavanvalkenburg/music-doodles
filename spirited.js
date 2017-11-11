@@ -26,6 +26,10 @@ function draw(){
   var level = amplitude.getLevel();
   var waveform = fft.waveform();
   background(200);
+  drawCubeGrid();
+}
+
+function drawCubeGrid(){
   translate(-width / 2, -height / 2 + INTERVAL / 4, 0);
   for (var i = 0; i < nRows; i++){
     var startLoc = INTERVAL / 2 * (i % 2);
@@ -39,7 +43,6 @@ function draw(){
     }
     translate(-startLoc, INTERVAL, 0); 
   }
-
 }
 
 function drawRotatingCube(x){
