@@ -1,4 +1,4 @@
-# music-doodles
+# Music Doodles
 
 ### Astro
 
