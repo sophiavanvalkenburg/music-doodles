@@ -7,3 +7,7 @@
 ### Spirited
 
 <img src="https://raw.githubusercontent.com/sophiavanvalkenburg/music-doodles/master/spirited/spirited-concentric-squares.gif" width="300"> <img src="https://raw.githubusercontent.com/sophiavanvalkenburg/music-doodles/master/spirited/spirited-diagonal-cube-wave.gif" width="300">
+
+### Funk
+
+<img src="https://raw.githubusercontent.com/sophiavanvalkenburg/music-doodles/master/funk/funk.gif" >
