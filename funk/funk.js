@@ -1,5 +1,5 @@
-var CANVAS_HEIGHT = window.innerHeight;
-var CANVAS_WIDTH = window.innerWidth;
+var CANVAS_HEIGHT = 600; //window.innerHeight;
+var CANVAS_WIDTH = 600; //window.innerWidth;
 var NUM_BINS = 256;
 var inradius;
 var sideLength;

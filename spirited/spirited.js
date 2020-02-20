@@ -6,16 +6,22 @@ function preload(){
 var lastTime = 0;
 var deltaTime = 0;
 var BOX_DIM = 30;
-var GRID_DENSITY = 1;
-var INTERVAL = BOX_DIM * GRID_DENSITY;
+var GRID_DENSITY = 1; // increase for rotating cubes 
 var Z_SPEED = 5;
 var FRAME_MULTIPLIER = 0.2;
+var interval = BOX_DIM * GRID_DENSITY;
 var nCols, nRows;
+
+function updateColsAndRows(density) {
+  interval = density * BOX_DIM;
+  nCols = Math.ceil(width / (interval)) + 1;
+  nRows = Math.ceil(height / (interval)) + 1;
+}
+
 function setup(){
 
   var cnv = createCanvas(600, 600, WEBGL);
-  nCols = Math.ceil(width / (GRID_DENSITY * BOX_DIM)) + 1;
-  nRows = Math.ceil(height / (GRID_DENSITY * BOX_DIM)) + 1;
+  updateColsAndRows(GRID_DENSITY);
 
   cnv.mouseClicked(togglePlay);
 
@@ -44,18 +50,18 @@ var GRID_FUNCTIONS = {
 };
 
 function drawGrid(offset, gridFn, drawObjFn){
-  translate(-width / 2, -height / 2 + INTERVAL / 4, 0);
+  translate(-width / 2, -height / 2 + interval / 4, 0);
   for (var i = 0; i < nRows; i++){
     var startLoc = offset * (i % 2);
     translate(startLoc, 0, 0);
     for (var j = 0; j < nCols; j++){
       var t = gridFn(i, j, frameCount);
       var c = setColors(t);
-      translate(INTERVAL * j, 0, -Z_SPEED * deltaTime * t);
+      translate(interval * j, 0, -Z_SPEED * deltaTime * t);
       drawObjFn(c);
-      translate(-INTERVAL * j, 0, Z_SPEED * deltaTime * t);
+      translate(-interval * j, 0, Z_SPEED * deltaTime * t);
     }
-    translate(-startLoc, INTERVAL, 0); 
+    translate(-startLoc, interval, 0); 
   }
 }
 
@@ -87,12 +93,23 @@ function drawDot(c){
   pop();
 }
 
+var shouldDrawDot = false;
+function toggleAnimation() {
+  shouldDrawDot = !shouldDrawDot;
+}
+
 function draw(){
   getDeltaTime();
   var level = amplitude.getLevel();
   var waveform = fft.waveform();
   background(200);
-  drawGrid(0, GRID_FUNCTIONS.concentricSquaresWave, drawDot, );
+  if (shouldDrawDot) {
+    updateColsAndRows(1);
+    drawGrid(0, GRID_FUNCTIONS.concentricSquaresWave, drawDot);
+  } else {
+    updateColsAndRows(4);
+    drawGrid(0, GRID_FUNCTIONS.rightToLeftdiagonalWave, drawRotatingCube);
+  }
 
 }
 
