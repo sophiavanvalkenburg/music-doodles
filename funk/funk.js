@@ -21,6 +21,9 @@ function setup(){
     inradius = 0.5 * CANVAS_HEIGHT;
     sideLength = 2 * inradius  * tan( PI / NUM_BINS );
 }
+
+var shouldSave = true;
+var drawCount = 0;
   
 function draw(){
     var spectrum = fft.analyze(NUM_BINS);
@@ -60,6 +63,9 @@ function draw(){
         if (col !== NUM_BINS / 2) drawTriangle();
         pop();
     }
+
+  drawCount++;
+  if (shouldSave) save(`funk${drawCount}.png`);
 
 }
 

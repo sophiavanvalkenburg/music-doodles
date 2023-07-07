@@ -14,6 +14,8 @@ function setup(){
 
 }
 
+var shouldSave = false;
+
 var drawCount = 0;
 var prevLevel = 0;
 var level;
@@ -105,6 +107,8 @@ function draw(){
   endShape();
 
   drawCount++;
+
+  if (shouldSave) save(`astro${drawCount}.png`);
 }
 
 function togglePlay(){

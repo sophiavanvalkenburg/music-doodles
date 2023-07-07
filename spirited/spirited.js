@@ -98,6 +98,9 @@ function toggleAnimation() {
   shouldDrawDot = !shouldDrawDot;
 }
 
+var drawCount = 0;
+var shouldSave = true;
+
 function draw(){
   getDeltaTime();
   var level = amplitude.getLevel();
@@ -110,6 +113,9 @@ function draw(){
     updateColsAndRows(4);
     drawGrid(0, GRID_FUNCTIONS.rightToLeftdiagonalWave, drawRotatingCube);
   }
+
+  drawCount++;
+  if (shouldSave) save(`spirited${drawCount}.png`);
 
 }
 
